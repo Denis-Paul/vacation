@@ -8,6 +8,8 @@ class DestinationsController < ApplicationController
 
   # GET /destinations/1 or /destinations/1.json
   def show
+    @current_weather = Destination.get_weather(@destination.city)
+    # byebug
   end
 
   # GET /destinations/new

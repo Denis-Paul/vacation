@@ -15,5 +15,15 @@
   <%= @destination.currency %>
 </p>
 
+<p>
+  <strong>Current weather:</strong>
+  <% if @current_weather %>
+    <p> Temperature: <%= @current_weather["temp_c"] %> °C </p>
+    <p> Condition: <%= @current_weather["condition"]["text"] %> </p>
+  <% else %>
+    <p> We don't have weather data for this city. </p>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_destination_path(@destination) %> |
 <%= link_to 'Back', destinations_path %>
