@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe DestinationsController, type: :controller do
+    render_views
 
     let(:valid_destination_attributes) {
         { :city => 'San Francisco', :country => 'USA', :currency => 'USD' }
@@ -14,11 +15,18 @@ RSpec.describe DestinationsController, type: :controller do
 
     describe 'Destinations /index' do
         before(:each) do
-            get :index
+            get :index, :format => :json
         end
 
-        it 'renders the index template' do
-            expect(response).to render_template('index')
+        it 'returns OK status' do
+            # expect(response).to have_http_status(200)
+            expect(response).to be_successful
+        end
+
+        it 'shows all destinations' do
+            # body = JSON.parse(response.body)
+            total = Destination.all.count
+            expect(response.body).to match total.to_s
         end
 
         it 'assigns all destinations to @destinations' do
@@ -50,10 +58,12 @@ RSpec.describe DestinationsController, type: :controller do
     end
 
     describe 'Destinations /destroy' do
-        it "deletes destination" do
+        it 'deletes destination, redirects to index and shows flash message' do
             expect {
-                delete :destroy, params: { id: destination_data.id, city: destination_data.city, country: destination_data.country, currency: destination_data.currency } 
+                delete :destroy, params: { id: destination_data.id } 
             }.to change(Destination, :count).by(-1)
+            expect(response).to redirect_to destinations_url
+            expect(flash[:notice]).to eq('Destination was successfully destroyed.')
         end
     end
 end
