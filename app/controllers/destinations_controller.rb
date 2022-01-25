@@ -8,8 +8,10 @@ class DestinationsController < ApplicationController
 
   # GET /destinations/1 or /destinations/1.json
   def show
-    @current_weather = WeatherApiService.call(@destination.city)
-    # byebug
+    begin
+      @current_weather = WeatherApiService.call(@destination.city)
+    rescue => exception
+    end
   end
 
   # GET /destinations/new

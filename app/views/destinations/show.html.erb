@@ -18,8 +18,8 @@
 <p>
   <strong>Current weather:</strong>
   <% if @current_weather %>
-    <p> Temperature: <%= @current_weather["temp_c"] %> °C </p>
-    <p> Condition: <%= @current_weather["condition"]["text"] %> </p>
+    <p> Temperature: <%= @current_weather[:temp_c] %> °C </p>
+    <p> Condition: <%= @current_weather[:condition][:text] %> </p>
   <% else %>
     <p> We don't have weather data for this city. </p>
   <% end %>
