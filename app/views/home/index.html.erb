@@ -1,10 +1,12 @@
-<h1>Welcome to vacation planning application</h1>
-<p>You can find your next vacation destination here!</p>
+<div class="container">
+    <h1>Welcome to vacation planning application</h1>
+    <p>You can find your next vacation destination here!</p>
 
-<% if user_signed_in? %>
-    <p>Logged in as: <%= current_user.email %></p>
-    <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-<% else %>
-    <p>Please sign in to get the best of our application</p>
-    <%= link_to 'Sign In', new_user_session_path %>
-<% end %>
+    <% if user_signed_in? %>
+        <p>Logged in as: <b> <%= current_user.email %> </b> </p>
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+    <% else %>
+        <p>Please sign in to get the best of our application</p>
+        <%= link_to 'Sign In', new_user_session_path %>
+    <% end %>
+</div>
