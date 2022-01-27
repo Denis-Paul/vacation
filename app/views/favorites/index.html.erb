@@ -1,0 +1,33 @@
+<h1>Favorite destinations</h1>
+
+<% if user_signed_in? %>
+    <% if current_user.favorites.size > 0 %>
+        <table>
+            <thead>
+                <tr>
+                <th>City</th>
+                <th>Country</th>
+                <th>Currency</th>
+                <th>Current Weather</th>
+                <th colspan="3"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% current_user.favorites.each do |favorite| %>
+                <tr>
+                    <td><%= favorite.destination.city %></td>
+                    <td><%= favorite.destination.country %></td>
+                    <td><%= favorite.destination.currency %></td>
+                    <td>-</td>
+                    <td><%= button_to 'Remove', favorite_path(id: favorite.destination.id), id: 'remove_favorite', method: :delete, remote: true, class: 'btn btn-primary' %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    <% else %>
+        <p> Momentarly you don't have favorite destinations added. </p>
+    <% end %>
+<% else %>
+    <p>Please sign in to get the best of our application</p>
+    <%= link_to 'Sign In', new_user_session_path %>
+<% end %>
