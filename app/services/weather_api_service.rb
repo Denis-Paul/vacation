@@ -27,8 +27,8 @@ class WeatherApiService < ApplicationService
         # exception.message
         # byebug
         api_error_message = JSON.parse(exception.response, symbolize_names: true)[:error][:message]
-        self.errors = api_error_message
-        self
+        # self.errors = api_error_message
+        # self
       end
     end
 end

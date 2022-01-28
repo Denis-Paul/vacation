@@ -10,7 +10,7 @@ class DestinationsController < ApplicationController
   def show
     @city_weather = WeatherApiService.call(@destination.city)
     # byebug
-    render json: { message: "Weather for #{@destination.city} city was not found", error: 400 } if @city_weather.errors
+    # render json: { message: "Weather for #{@destination.city} city was not found", error: 400 } if @city_weather.errors
     # respond_to do |format|
     #   if @city_weather.errors
     #     format.html { render :edit, notice: "Weather for #{@destination.city} was not found", status: :unprocessable_entity }
@@ -58,6 +58,7 @@ class DestinationsController < ApplicationController
 
   # DELETE /destinations/1 or /destinations/1.json
   def destroy
+    bybug
     @destination.destroy
 
     respond_to do |format|
