@@ -22,11 +22,16 @@
                     <td><%= destination.city %></td>
                     <td><%= destination.country %></td>
                     <td><%= destination.currency %></td>
-                    <% if WeatherApiService.call(destination.city) %>
-                        <td>Temperature: <%= WeatherApiService.call(destination.city)[:temp_c] %> °C</td>
-                        <td>Condition: <%= WeatherApiService.call(destination.city)[:condition][:text] %></td>
-                    <% else %>
-                        <td> No data available for this city </td>
+                    <% @destinations_weather_data.each do |city, weather| %>
+                        <% if city == destination.city %>
+                            <% if weather.is_a? String %>
+                                <td> <%= weather %> </td>
+                            <% else %>
+                                <td>Temperature: <%= weather[:temp_c] %> °C</td>
+                                <td>Feels like: <%= weather[:feelslike_c] %> °C</td>
+                                <td>Condition: <%= weather[:condition][:text] %></td>
+                            <% end %>
+                        <% end %>
                     <% end %>
                 </tr>
                 <% end %>
