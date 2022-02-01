@@ -1,33 +1,34 @@
-<h1>Favorite destinations</h1>
+<div class="container">
+    <h1>Favorite destinations</h1>
 
-<% if user_signed_in? %>
-    <% if current_user.favorites.size > 0 %>
-        <table>
-            <thead>
-                <tr>
-                <th>City</th>
-                <th>Country</th>
-                <th>Currency</th>
-                <th>Current Weather</th>
-                <th colspan="3"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <% current_user.favorites.each do |favorite| %>
-                <tr>
-                    <td><%= favorite.destination.city %></td>
-                    <td><%= favorite.destination.country %></td>
-                    <td><%= favorite.destination.currency %></td>
-                    <td>-</td>
-                    <td><%= button_to 'Remove', favorite_path(id: favorite.destination.id), id: 'remove_favorite', method: :delete, remote: true, class: 'btn btn-primary' %></td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
+    <% if user_signed_in? %>
+        <% if current_user.favorites.size > 0 %>
+            <% current_user.favorites.each do |favorite| %>
+                <div class="container">
+                    <div class="row">
+                        <div><b><%= favorite.destination.city %></b></div>
+                        <div><%= favorite.destination.country %></div>
+                        <div><%= favorite.destination.currency %></div>
+                        <% if favorite.destination.reviews.present? %>
+                            <% favorite.destination.reviews.each do |dest_review| %>
+                                <div>Rating: <%= dest_review.rating %></div>
+                                <div>Comment: <%= dest_review.comment %></div>
+                                <%= link_to 'Edit review', edit_destination_review_path(destination_id: dest_review.destination.id, id: dest_review.id) %>
+                            <% end %>
+                        <% else %>
+                            <%= link_to 'Add a review', new_destination_review_path(destination_id: favorite.destination.id) %>
+                        <% end %>
+                        <%= button_to 'Remove from favorites', favorite_path(id: favorite.destination.id), id: 'remove_favorite', method: :delete, remote: true, class: 'btn btn-primary' %>
+                    </div>
+                    <hr>
+                </div>
+            <% end %>
+            <%= link_to 'Back', root_path %>
+        <% else %>
+            <p> Momentarly you don't have favorite destinations added. </p>
+        <% end %>
     <% else %>
-        <p> Momentarly you don't have favorite destinations added. </p>
+        <p>Please sign in to get the best of our application</p>
+        <%= link_to 'Sign In', new_user_session_path %>
     <% end %>
-<% else %>
-    <p>Please sign in to get the best of our application</p>
-    <%= link_to 'Sign In', new_user_session_path %>
-<% end %>
+</div>

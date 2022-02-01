@@ -1,0 +1,7 @@
+<h1>Review</h1>
+
+<h3>Destination: <%= @destination.city %></h3>
+
+<%= render 'form', review: @review, destination: @destination %>
+
+<%= link_to 'Back', favorites_path %>
