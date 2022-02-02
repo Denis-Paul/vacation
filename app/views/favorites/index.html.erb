@@ -14,6 +14,8 @@
                                 <div>Rating: <%= dest_review.rating %></div>
                                 <div>Comment: <%= dest_review.comment %></div>
                                 <%= link_to 'Edit review', edit_destination_review_path(destination_id: dest_review.destination.id, id: dest_review.id) %>
+                                <br>
+                                <%= link_to 'Remove review', destination_review_path(destination_id: dest_review.destination.id, id: dest_review.id), method: :delete %>
                             <% end %>
                         <% else %>
                             <%= link_to 'Add a review', new_destination_review_path(destination_id: favorite.destination.id) %>
