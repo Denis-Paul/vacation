@@ -1,9 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: %i[ show edit update destroy ]
+  before_action :set_review, only: %i[ edit update destroy ]
   before_action :find_destination
-
-  def show
-  end
 
   def new
     @review = Review.new
@@ -16,6 +13,8 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.destination_id = @destination.id
     @review.user_id = current_user.id
+    # @destination.rating = @review.rating
+    # @destination.save
 
     respond_to do |format|
       if @review.save
