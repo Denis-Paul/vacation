@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_01_104912) do
+ActiveRecord::Schema.define(version: 2022_02_02_103250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2022_02_01_104912) do
     t.string "currency"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "rating", default: 0
   end
 
   create_table "favorites", force: :cascade do |t|
