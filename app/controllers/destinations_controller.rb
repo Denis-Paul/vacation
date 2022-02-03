@@ -50,7 +50,6 @@ class DestinationsController < ApplicationController
 
   # DELETE /destinations/1 or /destinations/1.json
   def destroy
-    bybug
     @destination.destroy
 
     respond_to do |format|
