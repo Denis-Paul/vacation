@@ -23,7 +23,7 @@
                     <td><%= destination.country %></td>
                     <td><%= destination.currency %></td>
                     <td>-</td>
-                    <td><%= button_to 'Add to favorites', favorites_path(id: destination.id), id: 'add_favorite', method: :create, remote: true, class: 'btn btn-primary' %></td>
+                    <td><%= button_to 'Add to favorites', favorites_path(id: destination.id), id: 'add_favorite', method: :create, remote: true, class: 'btn btn-primary btn-sm' %></td>
                 </tr>
                 <% end %>
             </tbody>

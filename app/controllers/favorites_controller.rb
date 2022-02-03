@@ -13,6 +13,11 @@ class FavoritesController < ApplicationController
     @destination = Destination.find(params[:id])
     @favorite = Favorite.find_by(user: current_user, destination: @destination)
     @favorite.destroy
+
+    respond_to do |format|
+      format.html { redirect_to favorites_url, notice: "Favorite destination was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private
