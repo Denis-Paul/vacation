@@ -19,6 +19,12 @@ class DestinationsController < ApplicationController
   def edit
   end
 
+  # GET /destinations/filter
+  def filter
+    @destinations = Destination.filter(params[:country])
+    render 'home/index'
+  end
+
   # POST /destinations or /destinations.json
   def create
     @destination = Destination.new(destination_params)
