@@ -17,8 +17,8 @@ class WeatherApiService < ApplicationService
         response =  RestClient.get "http://api.weatherapi.com/v1/current.json?q=#{@city}", { content_type: :json, accept: :json, "key": ENV["WEATHER_API_KEY"] }
         # byebug
         # response.code
-        current_weather = JSON.parse(response.body, symbolize_names: true)[:current]
-        current_weather
+        current_weather = JSON.parse(response.body, symbolize_names: true)
+        current_weather[:current]
       # rescue RestClient::ExceptionWithResponse => exception
       #   byebug
       #   exception.response
