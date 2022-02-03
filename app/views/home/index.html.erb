@@ -1,8 +1,9 @@
-<h1>Welcome to vacation planning application</h1>
-<p>You can find your next vacation destination here!</p>
+<div class="container">
+    <h1>Welcome to vacation planning application</h1>
+    <p>You can find your next vacation destination here!</p>
 
 <% if user_signed_in? %>
-    <p>Logged in as: <%= current_user.email %></p>
+    <p>Logged in as: <b><%= current_user.email %></b></p>
 
     <p id="notice"><%= notice %></p>
 
