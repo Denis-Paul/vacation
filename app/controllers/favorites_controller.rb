@@ -4,12 +4,12 @@ class FavoritesController < ApplicationController
 
   def create
     @destination = Destination.find(params[:id])
-    @favorite = Favorite.create(user_id: current_user.id, destination_id: @destination.id) unless Favorite.exists?(destination_id: @destination.id)
+    @favorite = Favorite.create(user: current_user, destination: @destination) unless Favorite.exists?(user: current_user, destination: @destination)
   end
 
   def destroy
     @destination = Destination.find(params[:id])
-    @favorite = Favorite.find_by(user_id: current_user.id, destination_id: @destination.id)
+    @favorite = Favorite.find_by(user: current_user, destination: @destination)
     @favorite.destroy
   end
 end
