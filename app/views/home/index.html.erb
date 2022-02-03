@@ -7,7 +7,7 @@
         <br>
         <h3>Available destinations</h3>
 
-        <table class="table">
+        <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">City</th>
@@ -30,10 +30,10 @@
                                 <td>Temperature: <%= weather[:temp_c] %> °C</td>
                                 <td>Feels like: <%= weather[:feelslike_c] %> °C</td>
                                 <td>Condition: <%= weather[:condition][:text] %></td>
+                                <td><%= button_to 'Add to favorites', favorites_path(id: destination.id), id: 'add_favorite', method: :create, remote: true, class: 'btn btn-primary btn-sm' %></td>
                             <% end %>
                         <% end %>
                     <% end %>
-                    <td><%= button_to 'Add to favorites', favorites_path(id: destination.id), id: 'add_favorite', method: :create, remote: true, class: 'btn btn-primary' %></td>
                 </tr>
                 <% end %>
             </tbody>
