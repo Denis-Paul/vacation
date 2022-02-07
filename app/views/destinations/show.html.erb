@@ -17,11 +17,11 @@
 
 <p>
   <strong>Current weather:</strong>
-  <% if @city_weather %>
+  <% if @city_weather.is_a? String %>
+    <p> We don't have weather data for this city. </p>
+  <% else %>
     <p> Temperature: <%= @city_weather[:temp_c] %> °C </p>
     <p> Condition: <%= @city_weather[:condition][:text] %> </p>
-  <% else %>
-    <p> We don't have weather data for this city. </p>
   <% end %>
 </p>
 

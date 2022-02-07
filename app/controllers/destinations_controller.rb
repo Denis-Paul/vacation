@@ -9,7 +9,7 @@ class DestinationsController < ApplicationController
   # GET /destinations/1 or /destinations/1.json
   def show
     @city_weather = WeatherApiService.call(@destination.city)
-    # byebug
+    # TODO: handle errors
     # render json: { message: "Weather for #{@destination.city} city was not found", error: 400 } if @city_weather.errors
     # respond_to do |format|
     #   if @city_weather.errors
