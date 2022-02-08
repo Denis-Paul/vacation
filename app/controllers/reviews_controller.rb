@@ -28,6 +28,9 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    # @destination.rating = @review.rating
+    # @destination.save
+
     respond_to do |format|
       if @review.update(review_params)
         format.html { redirect_to favorites_url, notice: "Review was successfully updated." }

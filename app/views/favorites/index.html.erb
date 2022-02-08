@@ -4,33 +4,31 @@
     <% if user_signed_in? %>
         <% if @favorite_destinations.size > 0 %>
             <% @favorite_destinations.each do |favorite| %>
-                <% if favorite.user_id == current_user.id %>
                     <div class="container">
                         <div class="row">
-                            <div><b><%= favorite.destination.city %></b></div>
-                            <div><%= favorite.destination.country %></div>
-                            <div><%= favorite.destination.currency %></div>
-                            <% if favorite.destination.reviews.present? %>
-                                <% favorite.destination.reviews.each do |dest_review| %>
+                            <div><b><%= favorite.city %></b></div>
+                            <div><%= favorite.country %></div>
+                            <div><%= favorite.currency %></div>
+                            <% if favorite.reviews.present? %>
+                                <% favorite.reviews.each do |dest_review| %>
                                     <% if dest_review.user_id == current_user.id %>
                                         <div>Rating: <%= dest_review.rating %></div>
                                         <div>Comment: <%= dest_review.comment %></div>
                                         <%= button_to 'Edit review', edit_destination_review_path(destination_id: dest_review.destination.id, id: dest_review.id), method: :get, class: 'btn btn-secondary btn-sm' %>
                                         <%= button_to 'Remove review', destination_review_path(destination_id: dest_review.destination.id, id: dest_review.id), method: :delete, remote: true, class: 'btn btn-secondary btn-sm' %>
                                     <% else %>
-                                        <% if !favorite.destination.reviews.map(&:user_id).include?(current_user.id) %>
-                                            <%= link_to 'Add a review', new_destination_review_path(destination_id: favorite.destination.id) %>
+                                        <% if !favorite.reviews.map(&:user_id).include?(current_user.id) %>
+                                            <%= link_to 'Add a review', new_destination_review_path(destination_id: favorite.id) %>
                                        <% end %>
                                     <% end %>
                                 <% end %>
                             <% else %>
-                                <%= link_to 'Add a review', new_destination_review_path(destination_id: favorite.destination.id) %>
+                                <%= link_to 'Add a review', new_destination_review_path(destination_id: favorite.id) %>
                             <% end %>
-                            <%= button_to 'Remove from favorites', favorite_path(id: favorite.destination.id), id: 'remove_favorite', method: :delete, remote: true, class: 'btn btn-danger btn-sm' %>
+                            <%= button_to 'Remove from favorites', favorite_path(id: favorite.id), id: 'remove_favorite', method: :delete, remote: true, class: 'btn btn-danger btn-sm' %>
                         </div>
                         <hr>
                     </div>
-                <% end %>
             <% end %>
             <%= link_to 'Back', root_path %>
         <% else %>
