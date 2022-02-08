@@ -26,6 +26,9 @@
                         <% if city == destination.city %>
                             <% if weather.is_a? String %>
                                 <td> <%= weather %> </td>
+                                <td> - </td>
+                                <td> - </td>
+                                <td> - </td>
                             <% else %>
                                 <td>Temperature: <%= weather[:temp_c] %> °C</td>
                                 <td>Feels like: <%= weather[:feelslike_c] %> °C</td>
