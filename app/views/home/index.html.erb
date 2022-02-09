@@ -42,9 +42,16 @@
             </tbody>
         </table>
         <br>
-        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+        <%= form_tag filter_destinations_path, method: :get do %>
+            <%= text_field_tag :country, params[:country], placeholder: 'Filter country', class: 'input-small' %>
+            <%= button_tag type: :submit, class: "btn btn-outline-success btn-sm" do %>
+                <%= 'Filter' %> 
+            <% end %>
+        <% end %>
         <br>
         <%= link_to 'Favorites', favorites_path %>
+        <br>
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
     <% else %>
         <p>Please sign in to get the best of our application</p>
         <%= link_to 'Sign In', new_user_session_path %>

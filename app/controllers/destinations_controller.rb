@@ -9,14 +9,7 @@ class DestinationsController < ApplicationController
   # GET /destinations/1 or /destinations/1.json
   def show
     @city_weather = WeatherApiService.call(@destination.city)
-    # TODO: handle errors
-    # render json: { message: "Weather for #{@destination.city} city was not found", error: 400 } if @city_weather.errors
-    # respond_to do |format|
-    #   if @city_weather.errors
-    #     format.html { render :edit, notice: "Weather for #{@destination.city} was not found", status: :unprocessable_entity }
-    #     format.json { render json: @city_weather.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    # TODO: handle errors ?
   end
 
   # GET /destinations/new
@@ -26,6 +19,18 @@ class DestinationsController < ApplicationController
 
   # GET /destinations/1/edit
   def edit
+  end
+
+  # GET /destinations/filter
+  def filter
+    @destinations = Destination.filter(params[:country])
+    # TODO: extract logic for getting destination weather data in another class
+    @destinations_weather_data = {}
+    @destinations.each do |destination|
+      city_weather = WeatherApiService.call(destination.city)
+      @destinations_weather_data["#{destination.city}"] = city_weather
+    end
+    render 'home/index'
   end
 
   # POST /destinations or /destinations.json

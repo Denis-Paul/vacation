@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   resources :favorites
   resources :destinations do
     resources :reviews
+    collection do
+      get 'filter', to: 'destinations#filter'
+    end
   end
 end
