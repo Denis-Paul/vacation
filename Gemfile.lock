@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/Dev-Denis-Paul/get-city-weather-data-gem
+  revision: 2a259c5c9087d31c0ea3097bc676cfa481d36644
+  branch: main
+  specs:
+    get_city_weather_data (0.1.0)
+      json (~> 2.6)
+      rest-client (~> 2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -111,6 +120,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.6.1)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -276,6 +286,7 @@ DEPENDENCIES
   devise-bootstrap-views (~> 1.0)
   dotenv-rails
   factory_bot_rails
+  get_city_weather_data!
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)

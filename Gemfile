@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'devise-bootstrap-views', '~> 1.0'
+gem 'get_city_weather_data', git: 'https://github.com/Dev-Denis-Paul/get-city-weather-data-gem', branch: :main
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
