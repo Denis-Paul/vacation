@@ -25,11 +25,7 @@ class DestinationsController < ApplicationController
   def filter
     @destinations = Destination.filter(params[:country])
     # TODO: extract logic for getting destination weather data in another class
-    @destinations_weather_data = {}
-    @destinations.each do |destination|
-      city_weather = WeatherApiService.call(destination.city)
-      @destinations_weather_data["#{destination.city}"] = city_weather
-    end
+    add_weather_attr
     render 'home/index'
   end
 
@@ -81,4 +77,15 @@ class DestinationsController < ApplicationController
     def destination_params
       params.require(:destination).permit(:city, :country, :currency)
     end
+
+    def add_weather_attr
+      @destinations.each do |destination|
+      api_response = WeatherApiService.call(destination.city)
+      if api_response.is_a? String
+        destination["weather"] = { error: api_response }
+      else
+        destination["weather"] = { data: api_response }
+      end
+    end
+  end
 end
