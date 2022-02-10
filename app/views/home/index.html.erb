@@ -22,17 +22,16 @@
                     <td><%= destination.city %></td>
                     <td><%= destination.country %></td>
                     <td><%= destination.currency %></td>
-                    <% @destinations_weather_data.each do |city, weather| %>
-                        <% if city == destination.city %>
-                            <% if weather.is_a? String %>
-                                <td> <%= weather %> </td>
-                            <% else %>
-                                <td>Temperature: <%= weather[:temp_c] %> °C</td>
-                                <td>Feels like: <%= weather[:feelslike_c] %> °C</td>
-                                <td>Condition: <%= weather[:condition][:text] %></td>
-                                <td><%= button_to 'Add to favorites', favorites_path(id: destination.id), id: 'add_favorite', method: :create, remote: true, class: 'btn btn-primary btn-sm' %></td>
-                            <% end %>
-                        <% end %>
+                    <% if destination[:weather][:error].present? %>
+                        <td> <%= destination[:weather][:error] %> </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                    <% else %>
+                        <td>Temperature: <%= destination[:weather][:data][:temp_c] %> °C</td>
+                        <td>Feels like: <%= destination[:weather][:data][:feelslike_c] %> °C</td>
+                        <td>Condition: <%= destination[:weather][:data][:condition][:text] %></td>
+                        <td><%= button_to 'Add to favorites', favorites_path(id: destination.id), id: 'add_favorite', method: :create, remote: true, class: 'btn btn-primary btn-sm' %></td>
                     <% end %>
                 </tr>
                 <% end %>
