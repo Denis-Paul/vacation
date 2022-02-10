@@ -7,6 +7,8 @@ class Destination < ApplicationRecord
     has_many :users, through: :favorites
     has_many :reviews
 
+    attribute :weather, array: true
+
     scope :filter_by_country, ->(query) { where(["lower(country) LIKE ?", "%#{query.downcase}%"]) }
 
     def self.filter(query)
