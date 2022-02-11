@@ -22,28 +22,32 @@
                     <td><%= destination.city %></td>
                     <td><%= destination.country %></td>
                     <td><%= destination.currency %></td>
-                    <% @destinations_weather_data.each do |city, weather| %>
-                        <% if city == destination.city %>
-                            <% if weather.is_a? String %>
-                                <td> <%= weather %> </td>
-                            <% else %>
-                                <td>Temperature: <%= weather[:temp_c] %> °C</td>
-                                <td>Feels like: <%= weather[:feelslike_c] %> °C</td>
-                                <td>Condition: <%= weather[:condition][:text] %></td>
-                                <td><%= button_to 'Add to favorites', favorites_path(id: destination.id), id: 'add_favorite', method: :create, remote: true, class: 'btn btn-primary btn-sm' %></td>
-                            <% end %>
-                        <% end %>
+                    <% if destination[:weather][:error].present? %>
+                        <td> <%= destination[:weather][:error] %> </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                    <% else %>
+                        <td>Temperature: <%= destination[:weather][:data][:temp_c] %> °C</td>
+                        <td>Feels like: <%= destination[:weather][:data][:feelslike_c] %> °C</td>
+                        <td>Condition: <%= destination[:weather][:data][:condition][:text] %></td>
+                        <td><%= button_to 'Add to favorites', favorites_path(id: destination.id), id: 'add_favorite', method: :create, remote: true, class: 'btn btn-primary btn-sm' %></td>
                     <% end %>
                 </tr>
                 <% end %>
             </tbody>
         </table>
-
         <br>
-        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+        <%= form_tag filter_destinations_path, method: :get do %>
+            <%= text_field_tag :country, params[:country], placeholder: 'Filter by country', class: 'input-small' %>
+            <%= button_tag type: :submit, class: "btn btn-outline-success btn-sm" do %>
+                <%= 'Filter' %> 
+            <% end %>
+        <% end %>
         <br>
         <%= link_to 'Favorites', favorites_path %>
-
+        <br>
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
     <% else %>
         <p>Please sign in to get the best of our application</p>
         <%= link_to 'Sign In', new_user_session_path %>
