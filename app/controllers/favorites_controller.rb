@@ -9,6 +9,7 @@ class FavoritesController < ApplicationController
     # end
     
     # @sorted_destinations = @reviews.sort_by(&:rating) #sort_by{ |e| e[:rating] }.reverse
+    # @destinations = Destination.all
   end
 
   def create
@@ -31,7 +32,16 @@ class FavoritesController < ApplicationController
 
   def set_favorites
     # @favorite_destinations = current_user.favorites
-    @favorite_destinations = current_user.destinations.sort_by(&:city) # &:rating
-    # @favorite_destinations = Destination.get_ordered_destinations(current_user.id) # TODO: get also the destinations without an added review
+    # @favorite_destinations = current_user.destinations.sort_by(&:city) # &:rating
+    @ordered_dest_list = []
+    favorites_ids = current_user.destinations.collect(&:id)
+    # @favorite_destinations = Destination.get_ordered_destinations(current_user.id) # TODO: get also the destinations without an added review # destinatins_ids
+    destinations_with_rating = Destination.get_ordered_destinations(current_user.id).ids # collect(&:id)
+    favorite_destinations = (destinations_with_rating + favorites_ids).uniq
+    # TODO: implement a more efficient way of creating the ordered list of favorite destinations 
+    favorite_destinations.each do |dest_id|
+        destination = Destination.find(dest_id)
+        @ordered_dest_list.push(destination)
+    end
   end
 end
