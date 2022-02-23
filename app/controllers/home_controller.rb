@@ -8,14 +8,14 @@ class HomeController < ApplicationController
   private
 
     def add_weather_attr
-        @destinations.each do |destination|
-        client = GetCityWeatherData::Client.new(city: destination.city, api_key: ENV["WEATHER_API_KEY"])
-        api_response = client.get_weather
-        if api_response.is_a? String
-          destination["weather"] = { error: api_response }
+      @destinations.each do |destination|
+        response_weather_data = GetCityWeatherData.get_weather(destination.city)
+        if response_weather_data.is_a? String
+          destination["weather"] = { error: response_weather_data }
         else
-          destination["weather"] = { data: api_response }
+          destination["weather"] = { data: response_weather_data }
         end
       end
     end
+
 end

@@ -1,9 +1,10 @@
 GIT
   remote: https://github.com/Dev-Denis-Paul/get-city-weather-data-gem
-  revision: 2a259c5c9087d31c0ea3097bc676cfa481d36644
-  branch: main
+  revision: d0a34231f13ec2d6bc81731097d60934ca347df3
+  branch: set_api_token
   specs:
     get_city_weather_data (0.1.0)
+      dotenv-rails (= 2.7.6)
       json (~> 2.6)
       rest-client (~> 2.1)
 
