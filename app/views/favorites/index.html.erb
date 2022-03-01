@@ -14,8 +14,12 @@
                                     <% if dest_review.user_id == current_user.id %>
                                         <div>Rating: <%= dest_review.rating %></div>
                                         <div>Comment: <%= dest_review.comment %></div>
-                                        <%= button_to 'Edit review', edit_destination_review_path(destination_id: dest_review.destination.id, id: dest_review.id), method: :get, class: 'btn btn-secondary btn-sm' %>
-                                        <%= button_to 'Remove review', destination_review_path(destination_id: dest_review.destination.id, id: dest_review.id), method: :delete, remote: true, class: 'btn btn-secondary btn-sm' %>
+                                        <p>
+                                            <div style="display: inline-flex;">
+                                                <%= button_to 'Edit review', edit_destination_review_path(destination_id: dest_review.destination.id, id: dest_review.id), method: :get, class: 'btn btn-success btn-sm', style: 'margin-right: 3px;' %>
+                                                <%= button_to 'Remove review', destination_review_path(destination_id: dest_review.destination.id, id: dest_review.id), method: :delete, remote: true, class: 'btn btn-primary btn-sm' %>
+                                            </div>
+                                        </p>
                                     <% else %>
                                         <% if !favorite.reviews.map(&:user_id).include?(current_user.id) %>
                                             <%= link_to 'Add a review', new_destination_review_path(destination_id: favorite.id) %>

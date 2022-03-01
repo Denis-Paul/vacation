@@ -1,6 +1,8 @@
 <div class="container">
-    <h1>Welcome to vacation planning application</h1>
-    <p>You can find your next vacation destination here!</p>
+    <h1><b>VacationPlanr</b></h1>
+    <br>
+    <h4>Welcome to <b>VacationPlanr</b> application</h4>
+    <p>This is the best place where you can find your next vacation destination</p>
 
     <% if user_signed_in? %>
         <p>Logged in as: <b> <%= current_user.email %> </b> </p>
@@ -23,7 +25,7 @@
                     <td><%= destination.country %></td>
                     <td><%= destination.currency %></td>
                     <% if destination[:weather][:error].present? %>
-                        <td> <%= destination[:weather][:error] %> </td>
+                        <td> <i><%= destination[:weather][:error] %></i> </td>
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
@@ -39,7 +41,7 @@
         </table>
         <br>
         <%= form_tag filter_destinations_path, method: :get do %>
-            <%= text_field_tag :country, params[:country], placeholder: 'Filter by country', class: 'input-small' %>
+            <%= text_field_tag :country, params[:country], placeholder: 'Filter country', class: 'input-small' %>
             <%= button_tag type: :submit, class: "btn btn-outline-success btn-sm" do %>
                 <%= 'Filter' %> 
             <% end %>
