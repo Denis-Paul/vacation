@@ -3,6 +3,8 @@ class Destination < ApplicationRecord
     validates :country, presence: true
     validates :currency, presence: true, length: { maximum: 3, message: "doesn't have a valid size" }
 
+    attribute :weather, array: true
+
     has_many :favorites, dependent: :destroy
     has_many :users, through: :favorites
     has_many :reviews
