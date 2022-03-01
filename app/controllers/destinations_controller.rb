@@ -24,6 +24,11 @@ class DestinationsController < ApplicationController
   # GET /destinations/filter
   def filter
     @destinations = Destination.filter(params[:country])
+    if @destinations.empty?
+      flash[:alert] = 'Country not found'
+    else
+      flash.clear # flash.discard
+    end
     # TODO: extract logic for getting destination weather data in another class
     add_weather_attr
     render 'home/index'
