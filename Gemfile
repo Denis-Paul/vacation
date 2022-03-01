@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'devise-bootstrap-views', '~> 1.0'
-gem 'get_city_weather_data', git: 'https://github.com/Dev-Denis-Paul/get-city-weather-data-gem', branch: :set_api_token # :main
+gem 'get_city_weather_data', git: 'https://github.com/Dev-Denis-Paul/get-city-weather-data-gem', branch: :main
 
 # Test the gem locally
 # gem 'get_city_weather_data', path: '../get_city_weather_data'
