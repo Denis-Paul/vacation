@@ -20,8 +20,9 @@ class Destination < ApplicationRecord
     # scope :get_ordered_by_rating, ->(user_id) { includes(:reviews, :favorites).all.where("reviews.user_id = ? OR favorites.user_id = ?", user_id, user_id).order('reviews.rating DESC NULLS LAST') } 
     # includes(:reviews, :favorites).select('reviews.id','favorites.id').order('reviews.rating ASC')
     scope :ordered_by_rating, ->(query) { joins(:reviews).where("reviews.user_id = :id", id: query).order('reviews.rating DESC NULLS LAST') }
+    # scope :ordered_by_rating, ->(user_id, ids) { includes(:reviews).where("reviews.user_id = :id || favorites.destination_id = :ids", id: user_id, ids: ids).order('reviews.rating DESC NULLS LAST') }
 
-    def self.get_ordered_destinations(query)
-        # ordered_by_rating(query)
+    def self.get_ordered_destinations(user)
+        ordered_by_rating(user)
     end
 end

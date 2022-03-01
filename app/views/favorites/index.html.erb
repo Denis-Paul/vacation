@@ -2,8 +2,8 @@
     <h1>Favorite destinations</h1>
 
     <% if user_signed_in? %>
-        <% if @favorite_destinations.size > 0 %>
-            <% @favorite_destinations.each do |favorite| %>
+        <% if @ordered_dest_list.size > 0 %>
+            <% @ordered_dest_list.each do |favorite| %>
                     <div class="container">
                         <div class="row">
                             <div><b><%= favorite.city %></b></div>
