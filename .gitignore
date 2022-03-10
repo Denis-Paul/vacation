@@ -37,3 +37,6 @@ yarn-debug.log*
 
 # Ignore the .env file that contains keys.
 .env
+
+# Ignore SimpleCov coverage files
+/coverage/*
