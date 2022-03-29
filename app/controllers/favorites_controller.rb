@@ -20,6 +20,7 @@ class FavoritesController < ApplicationController
   def destroy
     @destination = Destination.find(params[:id])
     @favorite = Favorite.find_by(user: current_user, destination: @destination)
+    # TODO: check and test if destroy works
     @favorite.destroy
 
     respond_to do |format|
@@ -40,7 +41,7 @@ class FavoritesController < ApplicationController
     favorite_destinations = (destinations_with_rating + favorites_ids).uniq
     # TODO: implement a more efficient way of creating the ordered list of favorite destinations 
     favorite_destinations.each do |dest_id|
-        destination = Destination.find(dest_id)
+        destination = Destination.find(dest_id) # Favorite.find(destination_id: dest_id)
         @ordered_dest_list.push(destination)
     end
   end

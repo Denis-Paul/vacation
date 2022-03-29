@@ -32,6 +32,10 @@ class DestinationsController < ApplicationController
     # TODO: extract logic for getting destination weather data in another class
     add_weather_attr
     render 'home/index'
+    # respond_to do |format|
+    #   format.html { render 'home/index' }
+    #   format.js
+    # end
   end
 
   # POST /destinations or /destinations.json
