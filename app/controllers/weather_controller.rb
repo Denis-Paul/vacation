@@ -7,22 +7,9 @@ class WeatherController < ApplicationController
         get_city_weather(params[:query])
 
         respond_to do |format|
-            # format.html { redirect_to weather_index_path, notice: 'Weather data was found.' }
             format.html { render :index }
             format.js
-            # if @city_weather
-            #   format.js
-            # else
-            #   format.html { render :index }
-            # end
         end
-
-        # if @city_weather
-        #     respond_to do |format|
-        #         format.html { redirect_to weather_index_path, notice: 'Weather data was found.' }
-        #         format.js
-        #     end
-        # end
     end
 
     private
