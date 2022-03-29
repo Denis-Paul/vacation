@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   end
   root 'home#index'
   resources :favorites
+  resources :weather do
+    collection do
+      post :search, to: 'weather#search'
+    end
+  end
   resources :destinations do
     resources :reviews
     collection do

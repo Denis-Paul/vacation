@@ -1,0 +1,12 @@
+<div class="container">
+    <%# <p id="notice"><%= notice ></p> %>
+
+    <h3>Weather data</h3>
+    <p><b>Search weather data for the specified city</b></p> 
+    <%= render 'form', destination: @destination %>
+    <hr>
+    <div> <%= render 'weather_data', city_weather: @city_weather %> </div>
+    <div id="city-weather-data"></div>
+    <hr>
+    <%= link_to 'Back', root_path %>
+</div>
