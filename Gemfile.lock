@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Dev-Denis-Paul/get-city-weather-data-gem
-  revision: e6a825f2fa28551e61619b9060c84c67f188bacf
+  revision: b610bc8ff7abf92df44ba28ffcdc186eba64bfe7
   branch: main
   specs:
     get_city_weather_data (1.1.0)
