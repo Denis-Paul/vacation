@@ -52,6 +52,8 @@
         <br>
         <%= link_to 'Favorites', favorites_path %>
         <br>
+        <%= link_to 'Detailed city weather info', weather_index_path, method: :get %>
+        <br>
         <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
     <% else %>
         <p>Please sign in to get the best of our application</p>
