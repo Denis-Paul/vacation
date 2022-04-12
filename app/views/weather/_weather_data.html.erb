@@ -1,6 +1,6 @@
 <div id="weather-data">
     <% if city_weather.nil? %>
-        <p> <i>No data available</i> </p>
+        <p> <i>No data available. Please search for a city to get weather data.</i> </p>
     <% else %>
         <% if city_weather[:error].present? %>
             <p style="color:red;"> <i><%= city_weather[:error] %></i> </p>
