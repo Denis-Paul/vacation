@@ -13,7 +13,7 @@ class HomeController < ApplicationController
         if response_weather_data.is_a? String
           destination["weather"] = { error: response_weather_data }
         else
-          destination["weather"] = { data: response_weather_data }
+          destination["weather"] = { data: response_weather_data[:weather] }
         end
       end
     end

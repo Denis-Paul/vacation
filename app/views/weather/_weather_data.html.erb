@@ -1,0 +1,20 @@
+<div id="weather-data">
+    <% if city_weather.nil? %>
+        <p> <i>No data available. Please search for a city to get weather data.</i> </p>
+    <% else %>
+        <% if city_weather[:error].present? %>
+            <p style="color:red;"> <i><%= city_weather[:error] %></i> </p>
+        <% else %>
+            <div class="card" style="width: 18rem;">
+                <img src="<%= city_weather[:data][:condition][:icon] %>" class="card-img-top" alt="weather-icon" style="width:150px;height:150px;align-self:center;">
+                <div class="card-body">
+                    <h6 class="card-title"><%= city_weather[:city] %></h6>
+                    <p class="card-temperature">Temperature: <%= city_weather[:data][:temp_c] %> °C</p>
+                    <p class="card-feels-like">Feels like: <%= city_weather[:data][:feelslike_c] %> °C</p>
+                    <p class="card-condition">Condition: <%= city_weather[:data][:condition][:text] %></p>
+                    <p class="card-humidity">Humidity: <%= city_weather[:data][:humidity] %></p>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+</div>

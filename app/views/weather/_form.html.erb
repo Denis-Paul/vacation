@@ -1,0 +1,21 @@
+<%= form_with(model: destination, url: search_weather_index_path(destination), id: "search-city", remote: true) do |form| %>
+  <% if !destination.nil? %>
+    <% if destination.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(destination.errors.count, "error") %> prohibited this city from being saved:</h2>
+
+        <ul>
+          <% destination.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= form.label :query, "Search weather for:" %>
+  <%= form.text_field :query, placeholder: "name of the city"%>
+
+  <%= form.submit "Search", class: 'btn btn-success btn-sm' %>
+<% end %>
+

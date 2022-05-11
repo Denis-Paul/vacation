@@ -1,0 +1,8 @@
+// render weather data
+var body = document.getElementById("city-weather-data");
+body.innerHTML = "<%= j render 'weather_data' %>" + body.innerHTML;
+
+// clear and focus on input
+var input = document.getElementById("search-city");
+input.value = '';
+input.focus();
